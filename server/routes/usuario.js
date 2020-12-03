@@ -1,8 +1,8 @@
-const { query } = require('express');
 const express = require('express');
+const bcrypt = require('bcrypt');
 const _ = require('underscore'); //ESTE ES UNA UNA MUY BUENA LIBRERIA
 const Usuario = require('../modules/usuario')
-const app = express();    
+const app = express();   
 
 // app.get('/', function(req, res){ // Aqui indicamos una funcion get, la cual pide 2 parametros, la url y la funcion como tal (el req es solicitar algo del cliente) y (el res, es la respuesta del servidor)
 //     res.send('hellow word');// el send es acepta etiquetado HTML
@@ -42,9 +42,8 @@ const app = express();
        let usr = new Usuario({
         nombre: body.nombre,
         email: body.email,
-        password: body.password 
+        password: bcrypt.hashSync(body.password, 10)
        });
-
        usr.save((error, usrDB) =>{
          if(error){
             return res.status(400).json({//STATUS es el tipo de error que quiero mandarle

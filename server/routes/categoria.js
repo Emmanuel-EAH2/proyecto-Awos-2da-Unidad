@@ -83,7 +83,7 @@ app.get('/categoria', (req, res) =>{
  
  app.delete('/categoria/:id', function(req, res){
  let id = req.params.id;
-        Categoria.deleteOne({ _id: id }, (err, categoriaBorrado)=>{
+        Categoria.findByIdAndRemove(id, { context: 'query' } ,(err, categoriaBorrado)=>{
               if(err){
                       res.status(400).json({
                             ok: false,

@@ -17,6 +17,7 @@ res.send('hellow word');// el send es acepta etiquetado HTML
 app.use(require('./routes/usuario'));
 app.use(require('./routes/categoria'));
 app.use(require('./routes/productos'));
+app.use(require('./routes/login'));
 
 mongoose.connect('mongodb://localhost:27017/cafeteria',{
   useNewUrlParser: true,
