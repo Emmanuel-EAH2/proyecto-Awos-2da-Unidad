@@ -19,7 +19,7 @@ app.use(require('./routes/categoria'));
 app.use(require('./routes/productos'));
 app.use(require('./routes/login'));
 
-mongoose.connect('mongodb://localhost:27017/cafeteria',{
+mongoose.connect('mongodb+srv://Emmanuel:supermegamofing2@cluster0.jvqv6.mongodb.net/cafeteria',{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false, 
