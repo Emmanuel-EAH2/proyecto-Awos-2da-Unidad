@@ -11,12 +11,12 @@ const app = express();
 //++++++++++++++++++++++++++++++++++++ GET ++++++++++++++++++++++++++++++++++++++++++++++++++++++
     app.get('/usuario', function(req, res){ //registramos la ruta usuarios.
     
-    let desde = req.query.desde || 0; //QUERY es otra manera en la que el cliente le manda datos al servidor. 
-    let hasta = req.query.hasta || 5; // Y con query no ocupo ponerlo en la ruta
+    // let desde = req.query.desde || 0; //QUERY es otra manera en la que el cliente le manda datos al servidor. 
+    // let hasta = req.query.hasta || 5; // Y con query no ocupo ponerlo en la ruta
 
          Usuario.find({ estado: true })
-         .skip(Number(desde))
-         .limit(Number(hasta))
+        //  .skip(Number(desde))
+        //  .limit(Number(hasta))
          .exec((err, usuarios)=>{
             if(err) {
         res.status(400).json({
@@ -42,6 +42,7 @@ const app = express();
        let usr = new Usuario({
         nombre: body.nombre,
         email: body.email,
+        img: body.img,
         password: bcrypt.hashSync(body.password, 10)
        });
        usr.save((error, usrDB) =>{
@@ -66,7 +67,7 @@ app.put('/usuario/:id', function(req, res){//aqui en la ruta cocatenamos un id y
         
 let id = req.params.id;//cuando usamos params es por que en la url YA esta declarado el campo con el que afuerzas debemos poner un valor.
 
-let body = _.pick(req.body, ['nombre', 'email']) //de la variable body voy a hagarrar el nombre y el email, PICK es un metodo que me dice que puedo escojer un campo y con el underscore le estoy diciendo que me ignore todo lo demas.
+let body = _.pick(req.body, ['nombre', 'email', 'img']) //de la variable body voy a hagarrar el nombre y el email, PICK es un metodo que me dice que puedo escojer un campo y con el underscore le estoy diciendo que me ignore todo lo demas.
 
 Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, usrDB) =>{
             //la linea de arriba es un update y se lo estoy haciendo al usuraio y tambien estoy pidiendo parametros para que la consulta trabaje de mayor eficacia. Ahora el primer valor new, significa que si no lo encuentra lo crea, despues runValidators que corra las validaciones que le puse en el modelo, el context es como se va a enviar la consulta, y luego vamos a pedir 2 parametros que son el error o la respuesta positiva

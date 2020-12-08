@@ -7,7 +7,6 @@ let usuarioSchema = new schema({
         type: String,
         required: [ true, 'El nombre es necesario' ] 
     },// En el dato nombre le estamos asignando 2 propiedades y adentro de la propiedad required le estamos asignando 2 parametros los cuales son, que el required esta activo y un mensaje por si dejan el nombre vacio.
-    
     email: {
         type: String,
         required: [true, 'El correo es necesario']
@@ -33,6 +32,6 @@ let usuarioSchema = new schema({
             type: Boolean,
             default: false
     }
-}) 
+  }); 
 
 module.exports = mongoose.model('Usuario', usuarioSchema)
