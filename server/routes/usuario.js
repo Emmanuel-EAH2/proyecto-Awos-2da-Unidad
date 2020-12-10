@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const _ = require('underscore'); //ESTE ES UNA UNA MUY BUENA LIBRERIA
 const Usuario = require('../modules/usuario')
 const app = express();   
-
 // app.get('/', function(req, res){ // Aqui indicamos una funcion get, la cual pide 2 parametros, la url y la funcion como tal (el req es solicitar algo del cliente) y (el res, es la respuesta del servidor)
 //     res.send('hellow word');// el send es acepta etiquetado HTML
 //}); 

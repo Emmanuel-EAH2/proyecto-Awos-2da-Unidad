@@ -3,6 +3,8 @@ const express =  require('express');
 const bodyParser = require('body-parser');
 const app = express(); 
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -28,6 +30,7 @@ app.use(require('./routes/usuario'));
 app.use(require('./routes/categoria'));
 app.use(require('./routes/productos'));
 app.use(require('./routes/login'));
+app.use(cors());
 
 mongoose.connect('mongodb+srv://Emmanuel:supermegamofing2@cluster0.jvqv6.mongodb.net/cafeteria',{
   useNewUrlParser: true,

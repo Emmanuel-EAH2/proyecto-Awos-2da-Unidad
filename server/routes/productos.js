@@ -4,12 +4,12 @@ const app = express();
 const Productos = require('../modules/productos');
 //++++++++++++++++++++++++++++++++++++++++++ GET ++++++++++++++++++++++++++++++++++
 app.get('/producto', (req, res)=>{
-  let desde = req.query.desde || 0;
-  let hasta = req.query.hasta || 5;
+  // let desde = req.query.desde || 0;
+  // let hasta = req.query.hasta || 5;
 
   Productos.find({})
-  .skip(Number(desde))
-  .limit(Number(hasta))
+  // .skip(Number(desde))
+  // .limit(Number(hasta))
   .populate('usuario', 'nombre email')
   .populate('categoria', 'descripcion')
   .exec((err, producto)=>{
